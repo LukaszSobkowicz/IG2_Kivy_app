@@ -1,0 +1,127 @@
+Analyse:
+
+<Analyse>:
+    orientation: "vertical"
+    my_map: map
+
+    pth_: pth    
+    p1_: p1
+    p2_: p2
+    p3_: p3
+    p4_: p4
+    p5_: p5
+    p6_: p6
+    p7_: p7
+    p8_: p8
+    
+    BoxLayout:  
+        height: "40dp"
+        size_hint_y: None
+        Button:
+            size_hint_x: 25
+            text: "Wybierz plik"
+            on_press: root.filedialog()
+        TextInput:
+            size_hint_x: 25
+            id: pth
+    
+    BoxLayout:
+        height: "40dp"
+        size_hint_y: None
+        
+        Button:
+            size_hint_x: 25
+            text: "Trasa"
+            on_press: root.Data()
+           
+    BoxLayout:
+        orientation: 'vertical'
+        MapView:
+            lat: 0
+            lon: 0
+            zoom: 1
+            id: map
+    
+    BoxLayout:  
+        height: "45dp"
+        size_hint_y: None
+        Label:
+            size_hint_x: 40
+            text: "Dlugosc"
+        TextInput:
+            size_hint_x: 25
+            id: p1
+            readonly: True
+        Label:
+            size_hint_x: 45
+            text: "Roznica wysokosci"
+        TextInput:
+            size_hint_x: 20
+            id: p2
+            readonly: True
+        Label:
+            size_hint_x: 40
+            text: "Suma podejsc"
+        TextInput:
+            size_hint_x: 25
+            id: p3
+            readonly: True
+        Label:
+            size_hint_x: 40
+            text: "Suma zejsc"
+        TextInput:
+            size_hint_x: 25
+            id: p4   
+            readonly: True
+            
+    BoxLayout:  
+        height: "45dp"
+        size_hint_y: None
+        Label:
+            size_hint_x: 40
+            text: "Sr.predkosc"
+        TextInput:
+            size_hint_x: 25
+            id: p5
+            readonly: True
+        Label:
+            size_hint_x: 45
+            text: "Czas"
+        TextInput:
+            size_hint_x: 20
+            id: p6
+            readonly: True
+        Label:
+            size_hint_x: 40
+            text: "min.Wysokosc" 
+        TextInput:
+            size_hint_x: 25
+            id: p7
+            readonly: True
+        Label:
+            size_hint_x: 40
+            text: "max.Wysokosc"
+        TextInput:
+            size_hint_x: 25
+            id: p8   
+            readonly: True
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Zamknij"
+                on_release: root.cancel()
+
+            Button:
+                text: "Wczytaj"
+                on_release: root.load(filechooser.path, filechooser.selection)
+
